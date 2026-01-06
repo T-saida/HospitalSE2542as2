@@ -1,15 +1,20 @@
 package org.example.Doctor;
 
-public class doctor {
+import org.example.Person;
+
+public class doctor extends Person {
+
     private String fullName;
     private String specialization;
     private int experience;
 
-    public doctor(String fullName, String specialization, int experience) {
+    public doctor(String fullName, int age, String specialization, int experience) {
+        super(fullName, age);        // наследование
         this.fullName = fullName;
         this.specialization = specialization;
         this.experience = experience;
     }
+
     public void checkExperience() {
         if (experience > 5) {
             System.out.println(fullName + " is experienced.");
@@ -27,20 +32,16 @@ public class doctor {
     }
 
     @Override
-    public String toString() {
-        return "doctor: " + fullName + ", specialization: " + specialization + ", experience: " + experience;
+    public String getRole() {        // полиморфизм
+        return "Doctor";
     }
 
-    // Пример main для проверки
-    public static void main(String[] args) {
-        doctor d1 = new doctor("John Smith", "Cardiologist", 7);
-        doctor d2 = new doctor("Alice Brown", "Pediatrician", 3);
-
-        d1.checkExperience();
-        d2.checkExperience();
-
-        System.out.println(d1);
-        System.out.println(d2);
+    @Override
+    public String toString() {       // override
+        return "Doctor: " + fullName + ", age: " + age +
+                ", specialization: " + specialization +
+                ", experience: " + experience;
     }
 }
+
 
